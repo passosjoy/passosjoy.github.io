@@ -73,8 +73,8 @@
 
 <section id="projetos" class="section alt">
   <div class="container">
-    <h2 class="section-title"><span>04.</span> Todos os labs</h2>
-    <p class="section-sub">Cada novo repositório público no GitHub vira automaticamente um artigo aqui.</p>
+    <h2 class="section-title"><span>{{ "04." if featured else "03." }}</span> Todos os labs</h2>
+    <p class="section-sub">Cada novo repositório público com o topic <code>portfolio</code> no GitHub vira automaticamente um artigo aqui.</p>
     {% include "_filters.html" %}
     <div class="grid" data-filter-grid>
       {% for project in projects %}{% include "_card.html" %}{% endfor %}
@@ -85,7 +85,7 @@
 
 <section id="contato" class="section">
   <div class="container narrow center">
-    <h2 class="section-title"><span>05.</span> Contato</h2>
+    <h2 class="section-title"><span>{{ "05." if featured else "04." }}</span> Contato</h2>
     <p class="lead">Buscando uma pessoa para cuidar de plataforma, confiabilidade e cloud? Vamos conversar.</p>
     <div class="hero-actions center">
       {% if profile.email %}<a class="btn" href="mailto:{{ profile.email }}">{{ profile.email }}</a>{% endif %}
