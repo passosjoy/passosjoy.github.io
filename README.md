@@ -16,7 +16,7 @@ flowchart LR
 ```
 
 1. `build.py` lê `config.yaml`, consulta a API do GitHub (perfil, repos, README, linguagens, estrutura de pastas).
-2. Para cada repo público (exceto forks, arquivados e itens em `github.exclude`) gera `projetos/<repo>/index.html`.
+2. Para cada repo **público** com o topic `portfolio` (configurável em `github.required_topic`; exceto forks, arquivados e itens em `github.exclude`) gera `projetos/<repo>/index.html`. Repos privados nunca entram.
 3. Links e imagens relativos do README são reescritos para o GitHub; blocos ```` ```mermaid ```` viram diagramas.
 4. Projetos são classificados por área (Kubernetes, IaC, Cloud, GitOps...) via `categories` no `config.yaml` + topics do repo.
 5. O workflow `.github/workflows/deploy.yml` roda testes, gera o site e publica no Pages: em todo push, a cada 6h, manualmente (*Run workflow*) ou via `repository_dispatch` (`new-project`).
@@ -28,7 +28,7 @@ O README do repositório é o **Lab** (passo a passo). Para adicionar a parte de
 Dicas para recrutadores enxergarem senioridade:
 - Adicione **description** e **topics** em cada repo (ex.: `kubernetes`, `terraform`, `argocd`) — eles alimentam cards e filtros.
 - Coloque um diagrama de arquitetura (Mermaid ou imagem) e a seção "Como executar" no README.
-- Use `required_topic: portfolio` no `config.yaml` se quiser publicar só os repos marcados com esse topic.
+- Para publicar um novo projeto: crie o repo **público** e adicione o topic `portfolio` (página do repo → ⚙ ao lado de *About* → *Topics*). Para publicar todos os repos públicos, use `required_topic: ""`.
 
 ## Rodar localmente
 

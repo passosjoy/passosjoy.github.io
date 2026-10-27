@@ -19,20 +19,23 @@
     <div class="terminal" aria-hidden="true">
       <div class="terminal-bar"><span></span><span></span><span></span><em>~/portfolio</em></div>
       <pre><code><span class="t-p">$</span> kubectl get projects -n portfolio
-<span class="t-h">NAME                      STATUS    AGE</span>
-{% for p in projects[:5] %}{{ "%-25s"|format(p.name[:24]) }} <span class="t-ok">Ready</span>     {{ p.pushed_label }}
+{% if projects %}<span class="t-h">NAME                      STATUS    AGE</span>
+{% endif %}{% for p in projects[:5] %}{{ "%-25s"|format(p.name[:24]) }} <span class="t-ok">Ready</span>     {{ p.pushed_label }}
+{% else %}<span class="t-h">No resources found. Deploying new labs...</span>
 {% endfor %}
 <span class="t-p">$</span> terraform plan
 <span class="t-ok">No changes.</span> Infra is up-to-date.
 <span class="t-p">$</span> <span class="cursor">▍</span></code></pre>
     </div>
   </div>
+  {% if projects %}
   <div class="container stats">
     <div><strong>{{ stats.projects }}</strong><span>labs publicados</span></div>
     <div><strong>{{ stats.categories }}</strong><span>áreas técnicas</span></div>
     <div><strong>{{ stats.languages }}</strong><span>linguagens</span></div>
     <div><strong>100%</strong><span>reproduzível no GitHub</span></div>
   </div>
+  {% endif %}
 </section>
 
 <section id="sobre" class="section">
@@ -76,6 +79,7 @@
     <div class="grid" data-filter-grid>
       {% for project in projects %}{% include "_card.html" %}{% endfor %}
     </div>
+    {% if not projects %}{% include "_empty.html" %}{% endif %}
   </div>
 </section>
 

@@ -16,25 +16,22 @@ profile:
     o problema, a arquitetura, as decisões técnicas e como executar o lab.
   location: "Brasil"
   open_to: ["DevOps Sênior", "Cloud Engineer", "SRE", "Arquiteta de Soluções"]
-  linkedin: ""           # ex.: https://www.linkedin.com/in/seu-usuario
-  email: ""              # ex.: voce@email.com
+  linkedin: "https://www.linkedin.com/in/joyce-ag-passos/"
+  email: "joy.passos@hotmail.com"
   resume: ""             # link para o CV em PDF (opcional)
 
 github:
   username: passosjoy
   include_forks: false
   include_archived: false
-  required_topic: ""     # se preenchido (ex.: "portfolio"), só repos com esse topic entram no site
+  # Só repos PÚBLICOS com este topic entram no site. Deixe "" para publicar todos os repos públicos.
+  required_topic: "portfolio"
   exclude:
     - joycepassoszup     # repo de configuração do perfil
     - joydocs            # template de documentação (remova daqui quando tiver conteúdo)
 
 # Repositórios em destaque na home (também pode usar `featured: true` em content/projects/<repo>.md)
-featured:
-  - Crcossplane-Argo-CD--Localstack
-  - kubernetes-curso
-  - tenancychilden
-  - cka
+featured: []
 
 skills:
   - group: "Cloud"

@@ -98,3 +98,11 @@ def test_build_site_generates_article_per_repo(tmp_path):
     index = (out / "index.html").read_text()
     assert "Sobre <strong>mim</strong>" in index and 'data-filter="Kubernetes"' in index
     assert (out / "sitemap.xml").exists() and (out / "feed.xml").exists() and (out / "static/css/style.css").exists()
+
+
+def test_required_topic_and_empty_state(tmp_path):
+    cfg = {**CONFIG, "github": {**CONFIG["github"], "required_topic": "portfolio"}}
+    client = FakeClient([repo("tagged", topics=["portfolio"]), repo("untagged")], {})
+    assert [r["repo"]["name"] for r in fetch_data(client, cfg)["repos"]] == ["tagged"]
+    build_site({"user": {}, "repos": []}, cfg, tmp_path / "s", overrides_dir=tmp_path)
+    assert "No resources found" in (tmp_path / "s/index.html").read_text()

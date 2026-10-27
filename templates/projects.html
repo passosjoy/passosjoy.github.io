@@ -10,6 +10,7 @@
     <div class="grid" data-filter-grid>
       {% for project in projects %}{% include "_card.html" %}{% endfor %}
     </div>
+    {% if not projects %}{% include "_empty.html" %}{% endif %}
   </div>
 </section>
 {% endblock %}
