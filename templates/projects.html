@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Projetos · {{ site.title }}{% endblock %}
+{% block canonical %}/projetos/{% endblock %}
+{% block content %}
+<section class="section page-head">
+  <div class="container">
+    <h1>Projetos & Labs</h1>
+    <p class="lead">{{ projects|length }} laboratórios gerados automaticamente a partir do <a href="{{ profile.github }}">GitHub</a>. Cada artigo traz a explicação e o passo a passo do lab.</p>
+    {% include "_filters.html" %}
+    <div class="grid" data-filter-grid>
+      {% for project in projects %}{% include "_card.html" %}{% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

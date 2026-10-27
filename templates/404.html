@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}404 · {{ site.title }}{% endblock %}
+{% block content %}
+<section class="section center">
+  <div class="container narrow">
+    <h1 class="grad">404</h1>
+    <p class="lead">Error from server (NotFound): page not found.</p>
+    <a class="btn" href="{{ site.base_path }}/">Voltar ao início</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,16 @@
+<article class="card" data-categories="{{ project.categories | join('|') }}">
+  <div class="card-top">
+    <span class="card-icon">{{ project.categories[0][:1] if project.categories else '◆' }}</span>
+    <span class="card-date">{{ project.pushed_label }}</span>
+  </div>
+  <h3><a href="{{ site.base_path }}/projetos/{{ project.slug }}/">{{ project.title }}</a></h3>
+  <p>{{ project.summary }}</p>
+  <div class="tags">
+    {% for cat in project.categories[:3] %}<span class="tag">{{ cat }}</span>{% endfor %}
+    {% if project.language %}<span class="tag tag-lang">{{ project.language }}</span>{% endif %}
+  </div>
+  <div class="card-links">
+    <a href="{{ site.base_path }}/projetos/{{ project.slug }}/">Ler artigo →</a>
+    <a href="{{ project.url }}" target="_blank" rel="noopener" class="muted">Código</a>
+  </div>
+</article>

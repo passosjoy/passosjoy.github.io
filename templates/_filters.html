@@ -1,0 +1,6 @@
+{% if categories %}
+<div class="filters" role="toolbar" aria-label="Filtrar por área">
+  <button class="filter active" data-filter="*">Todos</button>
+  {% for cat in categories %}<button class="filter" data-filter="{{ cat }}">{{ cat }}</button>{% endfor %}
+</div>
+{% endif %}

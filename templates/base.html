@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ site.title }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
+  <meta property="og:title" content="{{ self.title() }}">
+  <meta property="og:description" content="{{ self.description() }}">
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+  {% if profile.avatar %}<meta property="og:image" content="{{ profile.avatar }}">{% endif %}
+  <link rel="canonical" href="{{ site.url }}{% block canonical %}/{% endblock %}">
+  <link rel="alternate" type="application/atom+xml" title="Artigos" href="{{ site.base_path }}/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ site.base_path }}/static/css/style.css">
+</head>
+<body class="page-{{ page }}">
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="{{ site.base_path }}/"><span class="brand-prompt">$</span> {{ profile.name | lower | replace(' ', '.') }}<span class="cursor">_</span></a>
+      <nav>
+        <a href="{{ site.base_path }}/#sobre">Sobre</a>
+        <a href="{{ site.base_path }}/#skills">Skills</a>
+        <a href="{{ site.base_path }}/projetos/">Projetos</a>
+        <a href="{{ site.base_path }}/#contato">Contato</a>
+        <a class="btn btn-sm" href="{{ profile.github }}" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© {{ generated_at.year }} {{ profile.name }} · Site estático gerado em Python a partir do <a href="{{ profile.github }}">GitHub</a>.</p>
+      <p class="muted">Atualizado em {{ generated_at.strftime('%d/%m/%Y %H:%M') }} UTC · <a href="{{ site.base_path }}/feed.xml">RSS</a></p>
+    </div>
+  </footer>
+  <script src="{{ site.base_path }}/static/js/main.js" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

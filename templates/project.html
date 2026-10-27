@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}{{ project.title }} · {{ site.title }}{% endblock %}
+{% block description %}{{ project.summary }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block canonical %}/projetos/{{ project.slug }}/{% endblock %}
+{% block content %}
+<article class="article">
+  <header class="article-head">
+    <div class="container narrow">
+      <a class="back" href="{{ site.base_path }}/projetos/">← Todos os projetos</a>
+      <div class="tags">{% for cat in project.categories %}<span class="tag">{{ cat }}</span>{% endfor %}</div>
+      <h1>{{ project.title }}</h1>
+      <p class="lead">{{ project.summary }}</p>
+      <div class="meta">
+        <span>Atualizado {{ project.pushed_label }}</span>
+        <span>{{ project.reading_time }} min de leitura</span>
+        {% if project.stars %}<span>★ {{ project.stars }}</span>{% endif %}
+      </div>
+      <div class="hero-actions">
+        <a class="btn" href="{{ project.url }}" target="_blank" rel="noopener">Ver código no GitHub</a>
+        {% if project.homepage %}<a class="btn btn-ghost" href="{{ project.homepage }}" target="_blank" rel="noopener">Demo</a>{% endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="container article-layout">
+    <aside class="sidebar">
+      {% if project.languages %}
+      <div class="side-box">
+        <h4>Linguagens</h4>
+        <div class="langbar">{% for l in project.languages %}<span style="width: {{ l.pct }}%" title="{{ l.name }} {{ l.pct }}%"></span>{% endfor %}</div>
+        <ul class="plain">{% for l in project.languages[:5] %}<li>{{ l.name }} <span class="muted">{{ l.pct }}%</span></li>{% endfor %}</ul>
+      </div>
+      {% endif %}
+      {% if project.topics or project.stack %}
+      <div class="side-box">
+        <h4>Stack</h4>
+        <div class="tags">{% for t in project.stack + project.topics %}<span class="tag tag-lang">{{ t }}</span>{% endfor %}</div>
+      </div>
+      {% endif %}
+      {% if project.toc %}
+      <div class="side-box toc">
+        <h4>Neste artigo</h4>
+        <ul class="plain">
+          {% for h in project.toc %}<li><a href="#{{ h.id }}">{{ h.name | safe }}</a>
+            {% if h.children %}<ul class="plain">{% for s in h.children %}<li><a href="#{{ s.id }}">{{ s.name | safe }}</a></li>{% endfor %}</ul>{% endif %}
+          </li>{% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% if project.tree %}
+      <div class="side-box">
+        <h4>Estrutura do repositório</h4>
+        <ul class="plain tree">{% for i in project.tree[:20] %}<li><a href="{{ i.url }}" target="_blank" rel="noopener">{{ i.name }}{{ '/' if i.type == 'dir' }}</a></li>{% endfor %}</ul>
+      </div>
+      {% endif %}
+    </aside>
+
+    <div class="article-body">
+      {% if project.case_study_html %}
+      <section class="prose case-study">
+        <h2 class="part-title">Estudo de caso</h2>
+        {{ project.case_study_html | safe }}
+      </section>
+      {% endif %}
+      <section class="prose lab">
+        <h2 class="part-title">Lab</h2>
+        {% if project.lab_html %}
+          {{ project.lab_html | safe }}
+        {% else %}
+          <div class="admonition note"><p class="admonition-title">Documentação em construção</p>
+          <p>Este lab ainda não tem README detalhado. Consulte o <a href="{{ project.url }}">código no GitHub</a>.</p></div>
+        {% endif %}
+      </section>
+      <div class="article-cta">
+        <p>Quer reproduzir este lab? Todo o código está no repositório.</p>
+        <a class="btn" href="{{ project.url }}" target="_blank" rel="noopener">Abrir {{ project.name }} no GitHub</a>
+      </div>
+    </div>
+  </div>
+</article>
+{% endblock %}
+{% block scripts %}
+{% if project.has_mermaid %}
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "dark" });
+</script>
+{% endif %}
+{% endblock %}

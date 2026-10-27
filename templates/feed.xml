@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.title }}</title>
+  <link href="{{ site.url }}/"/>
+  <link rel="self" href="{{ site.url }}/feed.xml"/>
+  <id>{{ site.url }}/</id>
+  <updated>{{ generated_at.strftime('%Y-%m-%dT%H:%M:%SZ') }}</updated>
+  <author><name>{{ profile.name }}</name></author>
+{% for p in projects %}
+  <entry>
+    <title>{{ p.title }}</title>
+    <link href="{{ site.url }}/projetos/{{ p.slug }}/"/>
+    <id>{{ site.url }}/projetos/{{ p.slug }}/</id>
+    <updated>{{ p.pushed_at }}</updated>
+    <summary>{{ p.summary }}</summary>
+  </entry>
+{% endfor %}
+</feed>

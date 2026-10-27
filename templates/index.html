@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">{{ profile.role }}</p>
+      <h1>Olá, eu sou <span class="grad">{{ profile.name }}</span>.</h1>
+      <p class="lead">{{ profile.headline }}</p>
+      <div class="hero-actions">
+        <a class="btn" href="{{ site.base_path }}/projetos/">Ver projetos</a>
+        <a class="btn btn-ghost" href="{{ profile.github }}" target="_blank" rel="noopener">GitHub</a>
+        {% if profile.linkedin %}<a class="btn btn-ghost" href="{{ profile.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>{% endif %}
+        {% if profile.resume %}<a class="btn btn-ghost" href="{{ profile.resume }}" target="_blank" rel="noopener">Currículo</a>{% endif %}
+      </div>
+      {% if profile.open_to %}
+      <p class="open-to">Aberta a oportunidades: {% for r in profile.open_to %}<span class="pill">{{ r }}</span>{% endfor %}</p>
+      {% endif %}
+    </div>
+    <div class="terminal" aria-hidden="true">
+      <div class="terminal-bar"><span></span><span></span><span></span><em>~/portfolio</em></div>
+      <pre><code><span class="t-p">$</span> kubectl get projects -n portfolio
+<span class="t-h">NAME                      STATUS    AGE</span>
+{% for p in projects[:5] %}{{ "%-25s"|format(p.name[:24]) }} <span class="t-ok">Ready</span>     {{ p.pushed_label }}
+{% endfor %}
+<span class="t-p">$</span> terraform plan
+<span class="t-ok">No changes.</span> Infra is up-to-date.
+<span class="t-p">$</span> <span class="cursor">▍</span></code></pre>
+    </div>
+  </div>
+  <div class="container stats">
+    <div><strong>{{ stats.projects }}</strong><span>labs publicados</span></div>
+    <div><strong>{{ stats.categories }}</strong><span>áreas técnicas</span></div>
+    <div><strong>{{ stats.languages }}</strong><span>linguagens</span></div>
+    <div><strong>100%</strong><span>reproduzível no GitHub</span></div>
+  </div>
+</section>
+
+<section id="sobre" class="section">
+  <div class="container narrow">
+    <h2 class="section-title"><span>01.</span> Sobre</h2>
+    <div class="prose">{{ profile.about | markdown }}</div>
+  </div>
+</section>
+
+<section id="skills" class="section alt">
+  <div class="container">
+    <h2 class="section-title"><span>02.</span> Skills</h2>
+    <div class="skills">
+      {% for group in config.skills %}
+      <div class="skill-group">
+        <h3>{{ group.group }}</h3>
+        <ul>{% for item in group['items'] %}<li>{{ item }}</li>{% endfor %}</ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% if featured %}
+<section id="destaques" class="section">
+  <div class="container">
+    <h2 class="section-title"><span>03.</span> Projetos em destaque</h2>
+    <p class="section-sub">Estudos de caso com arquitetura, automação e o lab completo para reproduzir.</p>
+    <div class="grid">
+      {% for project in featured %}{% include "_card.html" %}{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section id="projetos" class="section alt">
+  <div class="container">
+    <h2 class="section-title"><span>04.</span> Todos os labs</h2>
+    <p class="section-sub">Cada novo repositório público no GitHub vira automaticamente um artigo aqui.</p>
+    {% include "_filters.html" %}
+    <div class="grid" data-filter-grid>
+      {% for project in projects %}{% include "_card.html" %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="section">
+  <div class="container narrow center">
+    <h2 class="section-title"><span>05.</span> Contato</h2>
+    <p class="lead">Buscando uma pessoa para cuidar de plataforma, confiabilidade e cloud? Vamos conversar.</p>
+    <div class="hero-actions center">
+      {% if profile.email %}<a class="btn" href="mailto:{{ profile.email }}">{{ profile.email }}</a>{% endif %}
+      {% if profile.linkedin %}<a class="btn btn-ghost" href="{{ profile.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>{% endif %}
+      <a class="btn btn-ghost" href="{{ profile.github }}" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

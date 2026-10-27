@@ -1,0 +1,62 @@
+# Configuração do portfólio. Edite estes campos e faça push: o site é regerado automaticamente.
+site:
+  title: "Joyce Passos · DevOps & SRE"
+  description: "Portfólio de DevOps, SRE e Cloud: arquitetura, automação, Kubernetes, IaC e segurança com labs reproduzíveis."
+  url: "https://passosjoy.github.io"
+  base_path: ""          # use "/nome-do-repo" se publicar como Project Page
+  lang: "pt-BR"
+
+profile:
+  name: "Joyce Passos"
+  role: "DevOps Sênior · SRE · Cloud Engineer"
+  headline: "Construo plataformas cloud confiáveis, automatizadas e seguras — do Terraform ao Kubernetes, com GitOps e observabilidade."
+  about: |
+    Engenheira DevOps/SRE com foco em plataformas cloud (OCI e AWS), Kubernetes, Infraestrutura como Código e GitOps.
+    Este portfólio reúne **laboratórios reproduzíveis**: cada projeto tem o código no GitHub e um artigo explicando
+    o problema, a arquitetura, as decisões técnicas e como executar o lab.
+  location: "Brasil"
+  open_to: ["DevOps Sênior", "Cloud Engineer", "SRE", "Arquiteta de Soluções"]
+  linkedin: ""           # ex.: https://www.linkedin.com/in/seu-usuario
+  email: ""              # ex.: voce@email.com
+  resume: ""             # link para o CV em PDF (opcional)
+
+github:
+  username: passosjoy
+  include_forks: false
+  include_archived: false
+  required_topic: ""     # se preenchido (ex.: "portfolio"), só repos com esse topic entram no site
+  exclude:
+    - joycepassoszup     # repo de configuração do perfil
+    - joydocs            # template de documentação (remova daqui quando tiver conteúdo)
+
+# Repositórios em destaque na home (também pode usar `featured: true` em content/projects/<repo>.md)
+featured:
+  - Crcossplane-Argo-CD--Localstack
+  - kubernetes-curso
+  - tenancychilden
+  - cka
+
+skills:
+  - group: "Cloud"
+    items: ["Oracle Cloud (OCI)", "AWS", "Landing Zones", "IAM & Networking", "LocalStack"]
+  - group: "Containers & Orquestração"
+    items: ["Kubernetes (CKA)", "Helm", "Docker", "Operators / CRDs", "Crossplane"]
+  - group: "IaC & GitOps"
+    items: ["Terraform", "Crossplane", "Argo CD", "GitHub Actions", "CI/CD"]
+  - group: "SRE & Observabilidade"
+    items: ["SLI/SLO", "Prometheus", "Grafana", "Incident Response", "Autoscaling"]
+  - group: "Segurança"
+    items: ["Least Privilege / IAM", "Secrets Management", "Policy as Code", "Supply chain"]
+  - group: "Automação"
+    items: ["Python", "Bash", "Serverless (OCI Functions)", "API Gateway"]
+
+# Regras para classificar projetos automaticamente (topics, nome, descrição, linguagem e README)
+categories:
+  Kubernetes: ["kubernetes", "k8s", "cka", "ckad", "helm", "kubectl", "minikube", "kind", "operator"]
+  "IaC": ["terraform", "crossplane", "pulumi", "ansible", "iac", "landing zone", "landingzone", "opentofu"]
+  "GitOps & CI/CD": ["argo", "argocd", "argo cd", "gitops", "github actions", "pipeline", "ci/cd", "jenkins", "gitlab", "flux"]
+  Cloud: ["oci", "oracle", "aws", "azure", "gcp", "localstack", "tenancy", "cloud"]
+  Serverless: ["function", "functions", "lambda", "fn project", "api gateway", "serverless"]
+  "Observabilidade": ["prometheus", "grafana", "loki", "opentelemetry", "observability", "observabilidade", "sre", "slo"]
+  "Segurança": ["security", "segurança", "vault", "iam", "policy", "opa", "kyverno", "trivy", "devsecops"]
+  "Arquitetura": ["arquitetura", "architecture", "adr", "diagrama", "landing zone"]
