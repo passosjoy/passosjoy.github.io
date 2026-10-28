@@ -3,6 +3,7 @@
 <section class="hero">
   <div class="container hero-inner">
     <div class="hero-text">
+      {% if profile.avatar %}<img class="avatar" src="{{ profile.avatar }}{{ '&' if '?' in profile.avatar else '?' }}s=320" alt="Foto de {{ profile.name }}" width="140" height="140">{% endif %}
       <p class="eyebrow">{{ profile.role }}</p>
       <h1>Olá, eu sou <span class="grad">{{ profile.name }}</span>.</h1>
       <p class="lead">{{ profile.headline }}</p>
