@@ -55,6 +55,7 @@ img { max-width: 100%; }
 h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.1; margin: 0 0 1rem; letter-spacing: -.02em; }
 .grad { background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lead { font-size: 1.15rem; color: #c3cce0; }
+.avatar { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.25rem; border: 3px solid transparent; background: linear-gradient(var(--bg, #0d1117), var(--bg, #0d1117)) padding-box, linear-gradient(135deg, var(--accent, #2f81f7), var(--accent-2, #a371f7)) border-box; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
 .hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; margin: 1.5rem 0; }
 .open-to { color: var(--muted); font-size: .9rem; }
 .pill { display: inline-block; margin: .2rem .3rem; padding: .15rem .6rem; border: 1px solid var(--border); border-radius: 999px; color: var(--text); }
